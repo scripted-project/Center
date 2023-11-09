@@ -1,6 +1,6 @@
 import sys
 
-from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QMainWindow, QLabel, QVBoxLayout, QLineEdit, QGridLayout, QGroupBox
+from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QMainWindow, QLabel, QVBoxLayout, QLineEdit, QGridLayout, QGroupBox, QCalendarWidget, QListWidget, QPlainTextEdit
 from PyQt6.QtCore import QSize, Qt
 from PyQt6.QtGui import QPalette, QColor
 
@@ -15,17 +15,29 @@ class MainWindow(QMainWindow):
         baseLayout = QGridLayout()
         baseLayout.addWidget(mainBox, 0, 0)
         
-        mainBox.setLayout(baseLayout)
-
-
-        eventsLayout = QGridLayout()
-        eventsBox = QGroupBox()
-
-        eventsBox.setLayout(eventsLayout)
-
-        Text = QLineEdit()
-
-        eventsLayout.addWidget(Text)
+        mainLayout = QGridLayout()
+        mainBox.setLayout(mainLayout)
+        
+        calendarBox = QGroupBox("Events")
+        calendarLayout = QGridLayout()
+        calendar = QCalendarWidget()
+        calendarLayout1 = QGridLayout()
+        calendarLayout1.addWidget(calendar)
+        calendarBox1 = QGroupBox("Calendar")
+        calendarBox1.setLayout(calendarLayout1)
+        calendarList = QListWidget()
+        calendarEventInfo = QLabel("Event Description")
+        calendarEventDescription = QPlainTextEdit()
+        calendarList.addItems(["Event1", "Event2"])
+        calendarLayout.addWidget(calendarList, 1, 3)
+        calendarLayout.addWidget(calendarBox1, 1, 1)
+        calendarLayout.addWidget(calendarEventInfo, 2, 3)
+        calendarLayout.addWidget(calendarEventDescription, 3, 3)
+        calendarBox.setLayout(calendarLayout)
+        mainLayout.addWidget(calendarBox, 1, 1)
+        
+        
+        
 
         
         widget.setLayout(baseLayout)
